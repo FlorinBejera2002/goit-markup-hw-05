@@ -38,7 +38,7 @@ body {
 
 }
 
-.modal {
+.backdrop {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,21 +47,27 @@ body {
     width: 100%;
     height: 100%;
     z-index: 99;
-    transition: opacity 250ms linear;
+    opacity: 1;
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.inner-div {
-    position: relative;
+.modal {
+    position: absolute;
+    left: 50%;
+    top: 50%;
     width: 528px;
     height: 581px;
-    background: #FFFFFF;
+    margin: 0px auto;
+    background-color: var(--focus-color);
+    transform: translate(-50%, -50%) scale(1);
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
 }
 
 .is-hidden {
-    visibility: hidden;
+    pointer-events: none;
     opacity: 0;
+    visibility: hidden;
 }
 
 .close-black {
@@ -74,6 +80,7 @@ body {
     padding: 9px 9px 10px 10px;
     top: 8px;
     right: 8px;
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* header*/
@@ -88,7 +95,24 @@ body {
     gap: 50px;
 }
 
+.navigation-list .border-after {
+    position: relative;
+}
 
+.navigation-list .border-after::after {
+    content: "";
+    border: 2px solid #2196f3;
+    width: 100%;
+    position: absolute;
+    bottom: -32px;
+    border-radius: 4px;
+    visibility: hidden;
+    left: 0;
+}
+
+.navigation-list .border-after::after {
+    visibility: visible;
+}
 
 .logo-portfolio-header {
     text-decoration: none;
@@ -108,7 +132,6 @@ body {
 }
 
 .header-portfolio {
-    border-bottom: 1px solid var(--header-color);
     font-weight: 500;
     font-size: 14px;
     line-height: 1, 14;
@@ -141,6 +164,7 @@ body {
 
 .navigation-list li a:hover {
     color: var(--hover-color);
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .right-navigation-list a {
@@ -149,6 +173,7 @@ body {
 
 .right-navigation-list a:hover,
 .right-navigation-list a:focus {
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
     color: var(--hover-color);
 }
 
@@ -172,6 +197,7 @@ body {
 }
 
 .button-hero-section:hover {
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
     color: var(--focus-color);
     background: var(--hover-color);
 }
@@ -329,11 +355,39 @@ body {
 }
 
 .first-section-portfolio button:hover {
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     color: var(--focus-color);
     background: var(--hover-color);
     box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.12);
     border-radius: 4px;
+}
+
+.card-list-images {
+    height: 294px;
+    overflow: hidden;
+    position: relative;
+}
+
+
+.overlay {
+    height: 294px;
+    width: 370px;
+    position: absolute;
+    background: rgba(33, 150, 243, 0.9);
+    transform: translateY(101%);
+    transition: transform 250ms linear;
+    font-family: "Roboto";
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0.03em;
+    padding: 60px 30px;
+    color: var(--focus-color);
+}
+
+.card-list-images:hover .overlay {
+    transform: translateY(0px);
 }
 
 .images-section .title-portfolio {
@@ -349,6 +403,7 @@ body {
 }
 
 .images-section li:hover {
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06), 1px 4px 6px rgba(0, 0, 0, 0.16);
 }
@@ -418,6 +473,7 @@ body {
 
 .address-portfolio div div a:hover,
 .address-portfolio div div a:focus {
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     color: var(--hover-color);
 }
@@ -457,6 +513,7 @@ body {
 }
 
 .contact-list-item:hover {
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     fill: var(--hover-color);
 }
@@ -487,6 +544,7 @@ body {
 
 .footer-icon-item:hover,
 .icon-item:hover {
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     fill: var(--focus-color);
     background-color: var(--hover-color);
@@ -518,6 +576,7 @@ body {
 }
 
 .regular-icon-item:hover {
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     fill: var(--hover-color);
     border-color: var(--hover-color);
@@ -526,7 +585,6 @@ body {
 .icons-footer {
     display: flex;
     gap: 10px;
-
 }
 
 .footer-icon-item {
@@ -538,5 +596,4 @@ body {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 50%;
     fill: var(--focus-color);
-
 }
